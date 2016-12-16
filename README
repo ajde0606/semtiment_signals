@@ -1,0 +1,9 @@
+python package:
+  - tweepy
+  - pandas
+  - matplotlib
+  - json
+  - re
+  - nltk (natural language toolkit )
+
+try s&p
