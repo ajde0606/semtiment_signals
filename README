@@ -1,9 +1,19 @@
 python package:
-  - tweepy
+  - tweepy (github)
   - pandas
-  - matplotlib
+  - matplotlib (optional)
   - json
   - re
-  - nltk (natural language toolkit )
+  - nltk (natural language toolkit ) (github)
 
-try s&p
+try Fed
+
+progress:
+  1. stream data from twitter
+  2. parse data using json
+  3. 
+
+
+some thoughts:
+  1. try google
+  2. sentiment analysis, learn nltk package

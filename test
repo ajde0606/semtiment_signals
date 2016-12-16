@@ -1,0 +1,24 @@
+import json
+import pandas as pd
+#import matplotlib.pyplot as plt
+import re
+import nltk
+
+print 'Reading Tweets\n'
+tweets_data_path = 'data/twitter_Fed.txt'
+tweets_file = open(tweets_data_path, "r")
+tweets_data = []
+
+for line in tweets_file:
+  try:
+    print json.loads(line)['text']
+    tweet = json.loads(line)
+    tweets_data.append(tweet)
+  except:
+    continue
+
+tweets = pd.DataFrame()
+tweets['text'] = map(lambda tweet: tweet['text'], tweets_data)
+#print tweets
+
+
