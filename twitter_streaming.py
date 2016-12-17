@@ -3,7 +3,7 @@ from tweepy.streaming import StreamListener
 from tweepy import OAuthHandler
 from tweepy import Stream
 import os
-key_word = os.environ['KEY_WORD']
+key_word = os.environ['KEYWORD']
 
 #Variables that contains the user credentials to access Twitter API 
 access_token = "809054374559358978-Hjd34SbKBMlUfPOOZ4uuzHAdwJqwQsC"

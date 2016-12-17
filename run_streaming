@@ -2,16 +2,24 @@
 
 
 function help {
-  echo "[key_word]"
+  echo '["keyword"]'
 }
 
 if [ $# -eq 1 ]
 then
-  export KEY_WORD="$1"
+  export KEYWORD="$1"
 else
   help
   exit
 fi
 
-echo "streaming $KEY_WORD"
-python twitter_streaming.py > data/twitter_$KEY_WORD.txt
+profix=`echo $KEYWORD|cut -c1-3`
+
+
+if [ -f "twitter_$profix.txt" ]
+then
+  cp twitter_$profix.txt twitter_$profix.txt.bak
+  rm twitter_$profix.txt
+fi
+
+python twitter_streaming.py > data/twitter_$profix.txt
