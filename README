@@ -1,4 +1,6 @@
-python package:
+
+
+python package: (~/semtiment_signals/lib/python2.7/site-packages)
   - tweepy (github)
   - pandas
   - matplotlib (optional)
