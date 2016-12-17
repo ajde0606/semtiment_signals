@@ -22,4 +22,4 @@ then
   rm twitter_$profix.txt
 fi
 
-python twitter_streaming.py > data/twitter_$profix.txt
+python twitter_streaming.py > twitter_$profix.txt
