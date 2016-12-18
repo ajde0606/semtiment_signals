@@ -6,26 +6,50 @@ Created on Dec 17, 2016
 import nltk
 import pandas as pd
 import json
+ 
+pos_tweets = [('I love this car', 'positive'), 
+              ('This view is amazing', 'positive'),
+              ('I feel great this morning', 'positive'),
+              ('I am so excited about the concert', 'positive'),
+              ('He is my best friend', 'positive')]
 
+neg_tweets = [('I do not like this car', 'negative'),
+              ('This view is horrible', 'negative'),
+              ('I feel tired this morning', 'negative'),
+              ('I am not looking forward to the concert', 'negative'),
+              ('He is my enemy', 'negative')]
 
-tweets_data_path = '../data/twitter_fed.txt'
-tweets_data = []
-tweets_file = open(tweets_data_path, "r")
-for line in tweets_file:
-    try:
-        tweet = json.loads(line)
-        if (tweet['lang'] != 'en'):
-            continue
-        tweets_data.append(tweet['text'])
-    except:
-        continue
+tweets = []
+for (words, sentiment) in pos_tweets + neg_tweets:
+    words_filtered = [e.lower() for e in words.split() if len(e) >= 3]
+    tweets.append((words_filtered, sentiment))
 
+def get_words_in_tweets(tweets):
+    all_words = []
+    for (words, sentiment) in tweets:
+        all_words.extend(words)
+    return all_words
 
-#Structuring Tweets
-#print 'Structuring Tweets\n'
-#tweets = pd.DataFrame()
-#tweets['text'] = map(lambda tweet: tweet['text'], tweets_data)
-#tweets['lang'] = map(lambda tweet: tweet['lang'], tweets_data)
-print tweets_data
+def get_word_features(wordlist):
+    wordlist = nltk.FreqDist(wordlist)
+    word_features = wordlist.keys()
+    return word_features
 
+word_features = get_word_features(get_words_in_tweets(tweets))
+
+def extract_features(document):
+    document_words = set(document)
+    features = {}
+    for word in word_features:
+        features['contains(%s)' % word] = (word in document_words)
+    return features
+
+#print extract_features(['love','this','car'])
+training_set = nltk.classify.apply_features(extract_features, tweets)
+#print training_set
+classifier = nltk.NaiveBayesClassifier.train(training_set)
+print classifier.show_most_informative_features(32)
+
+tweet = 'I am not happy'
+print classifier.classify(extract_features(tweet.split()))
 
