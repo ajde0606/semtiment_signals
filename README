@@ -13,7 +13,12 @@ try Fed
 progress:
   1. stream data from twitter
   2. parse data using json
-  3. 
+  3. consult http://www.laurentluce.com/posts/twitter-sentiment-analysis-using-python-and-nltk/, basic sentiment analysis
+    - input some examples with emotions
+    - extract features from examples, construct training_set
+    - build classifier (nltk.NaiveBayesClassifier.train)
+    - use classifier to determine sentiment from new input
+  4. read book, gain some thoughts?  
 
 
 some thoughts:
